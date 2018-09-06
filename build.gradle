@@ -24,7 +24,7 @@ subprojects
                 compile libs.common
                 testCompile libs.test
             }
-            [compileJava,compileTestJava]*.options*.encoding = utf-8
+            [compileJava,compileTestJava]*.options*.encoding = "utf-8"
         }
 
 
