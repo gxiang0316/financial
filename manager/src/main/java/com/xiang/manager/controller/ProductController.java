@@ -19,7 +19,6 @@ import java.util.List;
 @RequestMapping("/products")
 public class ProductController
 {
-
     private static Logger LOG = LoggerFactory.getLogger(ProductController.class);
 
     @Autowired
