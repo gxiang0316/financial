@@ -2,6 +2,7 @@ package com.xiang.manager.controller;
 
 import com.xiang.entity.Product;
 import com.xiang.manager.service.ProductService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -18,6 +19,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/products")
+@Api(tags = "products",description = "产品相关")
 public class ProductController
 {
     private static Logger LOG = LoggerFactory.getLogger(ProductController.class);

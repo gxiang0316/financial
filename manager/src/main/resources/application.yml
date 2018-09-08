@@ -12,3 +12,8 @@ spring:
     context-path : /manager
     port : 8081
 
+  swagger:
+    groupName: manger
+    basePackage: com.xiang.manager.controller
+
+
