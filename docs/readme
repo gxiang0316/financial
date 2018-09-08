@@ -1,2 +1,7 @@
 #swagger
 http://localhost:8081/manager/swagger-ui.html
+swagger tool:
+swagger ui/swagger ed itor(编辑swagger文档)/swagger codegen(生成服务端代码或客户端代码)
+
+销售端：
+用于与第三方交互的门户网关。这里进行安全控制、流量统计等。整合内部资源，对外提供相应的接口，以完成产品的销售管理。
