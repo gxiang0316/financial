@@ -1,6 +1,8 @@
 package com.xiang.entity;
 
 
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.math.BigDecimal;
@@ -20,6 +22,7 @@ public class Product
     /**
      * @see com.xiang.entity.enums.ProductStatus
      */
+    @ApiModelProperty(value = "状态",dataType = "com.xiang.entity.enums.ProductStatus")
     private String status;
     //起投金额
     private BigDecimal thresholdAmount;
