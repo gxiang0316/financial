@@ -1,8 +1,12 @@
 package com.xiang.manager.configuration;
 
+import com.xiang.manager.controller.ProductController;
+import org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
@@ -23,7 +27,20 @@ public class SwaggerConfiguration
         return new Docket(DocumentationType.SWAGGER_2)
                 .groupName("controller")
                 .apiInfo(aipInfo())
-                .select()
+                .select().apis(RequestHandlerSelectors.basePackage(ProductController.class.getPackage().getName()))
+                .paths(PathSelectors.ant("/products/"))
+                .build();
+
+    }
+
+    @Bean
+    public Docket defaultApi()
+    {
+        return new Docket(DocumentationType.SWAGGER_2)
+//                .groupName("controller")
+//                .apiInfo(aipInfo())
+                .select().apis(RequestHandlerSelectors.basePackage(BasicErrorController.class.getPackage().getName()))
+//                .paths(PathSelectors.ant("/products/"))
                 .build();
 
     }

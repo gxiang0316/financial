@@ -2,6 +2,7 @@ package com.xiang.manager.controller;
 
 import com.xiang.entity.Product;
 import com.xiang.manager.service.ProductService;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +25,7 @@ public class ProductController
     @Autowired
     private ProductService service;
 
+    @ApiOperation(value = "创建产品",notes = "根据业务规则添加相应的产品")
     @RequestMapping(value = "" ,method = RequestMethod.POST)
     public Product addProduct(@RequestBody Product product)
     {
