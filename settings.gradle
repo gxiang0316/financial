@@ -2,4 +2,7 @@ rootProject.name = 'financial'
 include 'api'
 include 'entity'
 include 'manager'
+include 'swagger'
+include 'seller'
+include 'jsonrpc'
 

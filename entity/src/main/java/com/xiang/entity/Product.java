@@ -1,6 +1,7 @@
 package com.xiang.entity;
 
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.Entity;
@@ -12,6 +13,7 @@ import java.util.Date;
  * 产品
  */
 @Entity
+@ApiModel(value="p",description = "产品模型")
 public class Product
 {
     //编号

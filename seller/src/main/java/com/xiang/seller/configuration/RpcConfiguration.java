@@ -11,15 +11,17 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
+ * 迁移jsonrpc模块，使用rpc自动配置
  * rpc相关配置
  * @author guixiang
  * @date 2018-09-09
  */
-@Configuration
+/*@Configuration
 public class RpcConfiguration
 {
     private static Logger LOG = LoggerFactory.getLogger(RpcConfiguration.class);
 
+    @Bean
     public AutoJsonRpcClientProxyCreator rpcClientProxyCreator(@Value("${rpc.manager.url}")String url)
     {
         AutoJsonRpcClientProxyCreator creator = new AutoJsonRpcClientProxyCreator();
@@ -35,4 +37,4 @@ public class RpcConfiguration
         creator.setScanPackage(ProductRpc.class.getPackage().getName());
         return creator;
     }
-}
+}*/

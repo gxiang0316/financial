@@ -13,12 +13,14 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
+ * 迁移swagger模块，使用自动化配置
  * swagger配置类
  * @author guixiang
  * @date 2018-09-08
- * @Configuration
- * @EnableSwagger2
  */
+/*
+@Configuration
+@EnableSwagger2
 public class SwaggerConfiguration
 {
     @Bean
@@ -37,10 +39,10 @@ public class SwaggerConfiguration
     public Docket defaultApi()
     {
         return new Docket(DocumentationType.SWAGGER_2)
-//                .groupName("controller")
-//                .apiInfo(aipInfo())
+                .groupName("controller")
+               .apiInfo(aipInfo())
                 .select().apis(RequestHandlerSelectors.basePackage(BasicErrorController.class.getPackage().getName()))
-//                .paths(PathSelectors.ant("/products/"))
+               .paths(PathSelectors.ant("/products/"))
                 .build();
 
     }
@@ -58,3 +60,4 @@ public class SwaggerConfiguration
                 .build();
     }
 }
+*/
