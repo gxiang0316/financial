@@ -17,6 +17,13 @@ ext {
             jsonrpc : [
                     "com.github.briandilley.jsonrpc4j:jsonrpc4j:1.5.3"
             ],
+            hazelcast : [
+                    "com.hazelcast:hazelcast:3.9.2",
+                    "com.hazelcast:hazelcast-spring:3.9.2"
+            ],
+            activemq : [
+                    "org.springframework.boot:spring-boot-starter-activemq:${springBootVersion}"
+            ],
             test : [
                     "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
             ]

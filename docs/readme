@@ -22,6 +22,27 @@ rpc运行原理：
             logging:
                 level:
                     com.googlecode.jsonrpc4j: debug
+        入口：AutoJsonRpcClientProxyCreator
+
+     服务端：
         入口：AutoJsonRpcServiceImplExporter
+
+缓存：
+    memcache(最早，结构单一 k/v)/redis(数据结构多、持久化)/Hazelcast(数据结构更多，功能更多；集群更方便，管理界面更好，spring整合更方便)
+    网址：hazelcast.org
+
+spring注解
+@Cacheable :  value等同于cacheNames(复数)/condition(条件性添加缓存)/key
+    key默认策略:
+        1、如果方法没有参数，则使用0作为key；
+        2、如果只有一个参数，则使用该参数作为key；
+        3、如果参数多于一个，则使用所有的参数的hashcode作为key
+    key自定义策略：
+        1、#参数名，#product.id
+        2、#p参数index,#p0.id
+@CachePut：1、每次都会执行
+@CacheEvict:1、allEntries=true，清空所有的数据；2、beforeInvocation=true,在执行方法之前清空
+缓存维护:消息系统：Topic模式、Queue、消费者分组
+
 
 

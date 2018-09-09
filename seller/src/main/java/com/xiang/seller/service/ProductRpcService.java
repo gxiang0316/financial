@@ -1,21 +1,15 @@
 package com.xiang.seller.service;
 
-import com.xiang.api.ProductRpc;
-import com.xiang.api.domain.ProductRpcReq;
 import com.xiang.entity.Product;
-import com.xiang.entity.enums.ProductStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,12 +18,11 @@ import java.util.List;
  * @date 2018-09-09
  */
 @Service
-public class ProductRpcService
+public class ProductRpcService implements ApplicationListener<ContextRefreshedEvent>
 {
     private static Logger LOG = LoggerFactory.getLogger(ProductRpcService.class);
 
-    @Autowired
-    private ProductRpc productRpc;
+    @Autowired ProductCache cache;
 
     /**
      * 查询全部产品
@@ -38,28 +31,46 @@ public class ProductRpcService
     @Bean
     public List<Product> findAll()
     {
-        ProductRpcReq req = new ProductRpcReq();
-        List<String> status = new ArrayList<String >();
-        status.add(ProductStatus.IN_SELL.name());
-        Pageable pageable = new PageRequest(0,100,Sort.Direction.DESC,"rewardRate");
-        req.setStatusList(status);
-//        req.setPageable(pageable);
-//        req.setPage(0);
-//        req.setSize(100);
-//        req.setDirection(Sort.Direction.DESC);
-//        req.setOrderBy("rewardRate");
-        LOG.info("查询全部产品，参数：{}",req);
-        List<Product> result = productRpc.query(req);
-        LOG.info("rpc查询全部产品，结果：{}",result);
-        return result;
+        return cache.readAllCache();
     }
 
     /**
-     * 测试
+     * 查询单个产品
+     * @param id
+     * @return
+     */
+    public Product findOne(String id)
+    {
+        LOG.info("查询单个产品，参数：{}",id);
+        Product product = cache.readCache(id);
+        //避免缓存中出现空数据
+        if(null == product)
+        {
+            cache.removeCache(id);
+        }
+        LOG.info("查询单个产品，结果：{}",product);
+        return product;
+    }
+
+    /**
+     * 测试，此注解在服务启动之后便会调用此方法
      */
     @PostConstruct
     public void testFindAll()
     {
         findAll();
+    }
+
+    /**
+     * 服务启动缓存数据
+     * @param event
+     */
+    @Override
+    public void onApplicationEvent(ContextRefreshedEvent event)
+    {
+        List<Product> products = findAll();
+        products.forEach(product -> {
+            cache.putCache(product);
+        });
     }
 }
