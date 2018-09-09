@@ -14,6 +14,9 @@ ext {
                     "io.springfox:springfox-swagger2:2.7.0",
                     "io.springfox:springfox-swagger-ui:2.7.0"
             ],
+            jsonrpc : [
+                    "com.github.briandilley.jsonrpc4j:jsonrpc4j:1.5.3"
+            ],
             test : [
                     "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
             ]
