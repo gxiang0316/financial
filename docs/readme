@@ -4,4 +4,24 @@ swagger tool:
 swagger ui/swagger ed itor(编辑swagger文档)/swagger codegen(生成服务端代码或客户端代码)
 
 销售端：
-用于与第三方交互的门户网关。这里进行安全控制、流量统计等。整合内部资源，对外提供相应的接口，以完成产品的销售管理。
+    用于与第三方交互的门户网关。这里进行安全控制、流量统计等。整合内部资源，对外提供相应的接口，以完成产品的销售管理。
+    功能：1、产品查询  2、申购、赎回  3、对账（ftp）
+接口文档：swagger/swagger编写（与第三方同步开发场景）/已有代码生成接口文档
+产品查询：
+    jsonrpc:内部交互性能优越，开发简便；http不如rpc写法简单；webservice xml方式浪费带宽；Thrift/grpc等性能高，但是写法复杂
+    jsonrpc4j:https://github.com/briandilley/jsonrpc4j
+rpc使用过程常见问题：
+    1、未找到rpc服务（ProductRpcService）,使用@Bean
+    2、rpc客户端未找到合适代理，是由于rpc接口不在springboot的扫描路径下，在rpc配置类中增加扫描注解
+    3、rpc未找到对应的地址，ProductRpc不能以/开始，rpc.manager.url需要以/结束
+    4、rpc参数要求（请求、响应）:不能使用自定义的接口对象，不能使用复杂对象
+    可以通过修改jsonrpc源码来取消以上限制
+rpc运行原理：
+    客户端：
+        Debug日志查看：
+            logging:
+                level:
+                    com.googlecode.jsonrpc4j: debug
+        入口：AutoJsonRpcServiceImplExporter
+
+
