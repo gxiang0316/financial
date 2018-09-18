@@ -1,15 +1,15 @@
 server:
+  servlet:
     context-path: /seller
-    port:8082
 rpc.manager.url: http://localhost:8081/manager/
 rpc:
     client:
         url: http://localhost:8081/manager/
         basePackage: com.xiang.api
- spring
-    cache:
-        type: hazelcast
- activemq:
-     broker-url: tcp://10.5.16.14:61616
-     packages:
-        trust-all: true
+spring:
+  cache:
+    type: hazelcast
+  activemq:
+    broker-url:
+    packages:
+      trust-all: true
